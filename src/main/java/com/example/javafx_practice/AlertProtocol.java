@@ -1,6 +1,5 @@
 package com.example.javafx_practice;
 
-import com.example.javafx_practice.item.Analysis;
 import com.example.javafx_practice.item.Calculation;
 import com.example.javafx_practice.item.Forex;
 import com.example.javafx_practice.item.TimerAlert;
@@ -10,21 +9,16 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class Protocol {
+public class AlertProtocol {
 
     public static Socket conn;
     public static DataOutputStream dos;
     public static DataInputStream dis;
 
-    public static void connect(String ip, int port) {
-        try {
-            conn = new Socket(ip,port);
-            dos = new DataOutputStream(conn.getOutputStream());
-            dis = new DataInputStream(conn.getInputStream());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-
-        }
+    public static void connect(String ip, int port) throws IOException {
+        conn = new Socket(ip,port);
+        dos = new DataOutputStream(conn.getOutputStream());
+        dis = new DataInputStream(conn.getInputStream());
     }
 
     //type
@@ -32,12 +26,12 @@ public class Protocol {
     public static final int TYPE_REQ_GRAPH = 2;
     public static final int TYPE_REQ_ALERT = 3;
     public static final int TYPE_REQ_SEARCH = 4;
-    public static final int TYPE_REQ_ANALYSIS = 5;
+
     public static final int TYPE_RES_CALCULATE = 11;
     public static final int TYPE_RES_GRAPH = 22;
     public static final int TYPE_RES_ALERT = 33;
     public static final int TYPE_RES_SEARCH = 44;
-    public static final int TYPE_RES_ANALYSIS = 55;
+
     //code
     //type -> 1
     public static final int CODE_REQ_CALCUALTE = 1;
@@ -49,8 +43,6 @@ public class Protocol {
     public static final int CODE_REQ_ALERT = 0;
     //type -> 4
     public static final int CODE_REQ_SEARCH = 1;
-    //type -> 5
-    public static final int CODE_REQ_ANALYSIS = 1;
 
 
     //type -> 11
@@ -63,8 +55,7 @@ public class Protocol {
     public static final int CODE_RES_ALERT_ = 0;
     //type -> 44
     public static final int CODE_RES_SEARCH = 1;
-    //type -> 55
-    public static final int CODE_RES_ANALYSIS = 1;
+
 
 
 
@@ -84,7 +75,7 @@ public class Protocol {
         int type = typeAndCode[0];
         int code = typeAndCode[1];
         byte[] byteSize = dis.readNBytes(4);
-        int size = Protocol.byteToInt(byteSize);
+        int size = AlertProtocol.byteToInt(byteSize);
         System.out.println("size : " + size);
 
         byte[] data = dis.readNBytes(size);
@@ -97,13 +88,10 @@ public class Protocol {
                 divGraph(code,data);
                 break;
             case TYPE_RES_ALERT :
-                divAlert(code,data);
+
                 break;
             case TYPE_RES_SEARCH :
                 divSearch(code,data);
-                break;
-            case TYPE_RES_ANALYSIS:
-                divAnalysis(code,data);
                 break;
         }
 
@@ -154,13 +142,6 @@ public class Protocol {
                 break;
         }
     }
-    private static void divAnalysis(int code, byte[] data)throws IOException, ClassNotFoundException {
-        switch (code){
-            case CODE_RES_ANALYSIS:
-                Analysis.resTableData(data);
-                break;
-        }
-    }
 
 
 
@@ -171,7 +152,7 @@ public class Protocol {
 
 
 
-    //------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
     private static byte[] convertObjectToBytes(int type, int code, Object obj) throws IOException {
         byte[] objByteArr;
         ByteArrayOutputStream boas = new ByteArrayOutputStream();

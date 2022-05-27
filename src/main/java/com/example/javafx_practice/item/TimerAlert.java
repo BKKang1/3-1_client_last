@@ -2,6 +2,7 @@ package com.example.javafx_practice.item;
 
 import com.example.javafx_practice.Protocol;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import persistence.dto.ReqAlertDTO;
 import persistence.dto.ReqAlertObject;
 import persistence.dto.ResAlertDTO;
@@ -15,16 +16,25 @@ import java.util.ArrayList;
 public class TimerAlert  {
     private static ArrayList<ReqAlertObject> timerArrList = new ArrayList<ReqAlertObject>();
 
+    private static TextField textField;
+
+    public static void setTextField(TextField tf){
+        textField = tf;
+        System.out.println(tf.toString());
+    }
     public static void run() {
         try {
         while(Protocol.conn.isConnected()){
+            Thread.sleep(10000);
             reqAlert();
-            Thread.sleep(600000);
+            Thread.sleep(500000);
         }
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
     private static ReqAlertDTO read() {
         ArrayList<String> aLines = null;
@@ -62,21 +72,24 @@ public class TimerAlert  {
         Protocol.receiveData();
     }
     public static void resAlert(byte[] data) throws IOException, ClassNotFoundException {
-//        여기서 서버로부터 ResAlertDTO 즉, ResAlertObject가 담긴 arraylist를 받게됨.
-//        그러면 서버로부터 받은 arraylist를 for문을 돌려서 하나씩 까보는데 judgement가 true 값이면 Alert를 띄워서 사용자에게 알리는거지
-            ResAlertDTO resAlertDTO = (ResAlertDTO) Protocol.convertBytesToObject(data);
-            for(int i=0; i<resAlertDTO.getResList().size(); i++) {
-                if(resAlertDTO.getResList().get(i).isJudgement() == true) {
-                    String currency_Alert = resAlertDTO.getResList().get(i).getCurrencytmp();
-                    String amount_Alert = resAlertDTO.getResList().get(i).getAlertAmount();
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("CONFIRMATION");
-                    alert.setHeaderText("Look, a CONFIRMATION");
-                    alert.setContentText(currency_Alert + " " + amount_Alert + "  설정금액에 도달하였습니다.");
-                    alert.showAndWait();
-            return;
-                }
+
+        ResAlertDTO resAlertDTO = (ResAlertDTO) Protocol.convertBytesToObject(data);
+        for(int i=0; i<resAlertDTO.getResList().size(); i++) {
+            if(resAlertDTO.getResList().get(i).isJudgement() == true) {
+                String currency_Alert = resAlertDTO.getResList().get(i).getCurrencytmp();
+                String amount_Alert = resAlertDTO.getResList().get(i).getAlertAmount();
+
+
+                System.out.println("tb");
+
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Look, a Warning Dialog");
+                alert.setContentText(currency_Alert+" "+amount_Alert+" 도달");
+
+                alert.showAndWait();
             }
+        }
     }
 
 }

@@ -4,4 +4,5 @@ import javafx.stage.Stage;
 
 public class StageStore {
     public static Stage stage=null;
+    public static Stage stageTmp=null;
 }

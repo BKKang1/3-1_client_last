@@ -10,16 +10,11 @@ import com.example.javafx_practice.item.WindowSize;
 import java.io.IOException;
 import java.net.Socket;
 
-public class HelloApplication extends Application {
+public class AlertMain extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        StageStore.stage =stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),WindowSize.MAIN_X , WindowSize.MAIN_Y);
-        stage.setTitle("MAIN");
-        stage.setScene(scene);
-        stage.show();
-        Protocol.connect("localhost",8888);
+        AlertTask alertTask = new AlertTask();
+        alertTask.run();
 
 
     }
@@ -28,5 +23,15 @@ public class HelloApplication extends Application {
         launch();
     }
 
+
+
+    static class AlertTask implements Runnable{
+
+        @Override
+        public void run() {
+            Protocol.connect("localhost",8885);
+            TimerAlert.run();
+        }
+    }
 
 }

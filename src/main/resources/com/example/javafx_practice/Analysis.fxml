@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_practice.AnalysisController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_practice.AnalysisController">
     <children>
 
         <TableView fx:id="tableView1" layoutX="28.0" layoutY="67.0" prefHeight="138.0" prefWidth="343.0" style="-fx-border-color: #0174DF;">
@@ -22,6 +22,7 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></TextField>
+      <Button fx:id="btnReq" onAction="#reqTableData" layoutX="150.0" layoutY="35.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="84.0" text="조회 요청" />
 
     </children>
 </AnchorPane>
