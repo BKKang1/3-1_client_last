@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_practice.AnalysisController">
+    <children>
+
+        <TableView fx:id="tableView1" layoutX="28.0" layoutY="67.0" prefHeight="138.0" prefWidth="343.0" style="-fx-border-color: #0174DF;">
+            <columns>
+                <TableColumn fx:id="tableViewColumn2" prefWidth="115.0" text="분석 타입" />
+                <TableColumn fx:id="tableViewColumn3" minWidth="0.0" prefWidth="114.0" text="수치" />
+                <TableColumn fx:id="tableViewColumn1" prefWidth="112.0" text="분석 점수" />
+
+            </columns>
+        </TableView>
+
+
+        <Button fx:id="moveMain" layoutX="39.0" layoutY="35.0" onAction="#moveMain" prefHeight="22.0" prefWidth="84.0" text="메인 이동" />
+      <TextField fx:id="txtResult" disable="true" layoutX="28.0" layoutY="225.0" prefHeight="63.0" prefWidth="343.0" style="-fx-text-fill: red; -fx-background-color: skyblue;">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></TextField>
+
+    </children>
+</AnchorPane>
