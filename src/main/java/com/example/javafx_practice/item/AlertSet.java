@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class AlertSet {
+    //깃허브
     private static int alertNum = 0;
 
     public static void alertClick(TextField txtAlertInput, String currencytmp, String alertAmount) throws IOException {
