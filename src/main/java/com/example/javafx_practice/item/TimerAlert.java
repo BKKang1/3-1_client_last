@@ -79,9 +79,6 @@ public class TimerAlert  {
                 String currency_Alert = resAlertDTO.getResList().get(i).getCurrencytmp();
                 String amount_Alert = resAlertDTO.getResList().get(i).getAlertAmount();
 
-
-                System.out.println("tb");
-
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Look, a Warning Dialog");

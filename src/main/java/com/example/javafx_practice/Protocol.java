@@ -33,6 +33,7 @@ public class Protocol {
     public static final int TYPE_REQ_ALERT = 3;
     public static final int TYPE_REQ_SEARCH = 4;
     public static final int TYPE_REQ_ANALYSIS = 5;
+
     public static final int TYPE_RES_CALCULATE = 11;
     public static final int TYPE_RES_GRAPH = 22;
     public static final int TYPE_RES_ALERT = 33;
@@ -85,7 +86,7 @@ public class Protocol {
         int code = typeAndCode[1];
         byte[] byteSize = dis.readNBytes(4);
         int size = Protocol.byteToInt(byteSize);
-        System.out.println("size : " + size);
+
 
         byte[] data = dis.readNBytes(size);
 

@@ -29,7 +29,7 @@ public class AlertMain extends Application {
 
         @Override
         public void run() {
-            Protocol.connect("localhost",8885);
+            Protocol.connect("localhost",10001);
             TimerAlert.run();
         }
     }

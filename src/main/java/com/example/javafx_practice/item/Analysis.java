@@ -38,8 +38,9 @@ public class Analysis {
             int score=0;
             ResTableDTO resTableDTO = (ResTableDTO) Protocol.convertBytesToObject(data);
             TableData[] tableDataArr = resTableDTO.getTableData();
+            System.out.println(tableDataArr.toString());
 
-            TableColumn tableViewColumn1 = tableView1.getColumns().get(0);//Å×ÀÌºíºäÀÇ Ã¹¹øÂ° ÄÃ·³À» »ı¼ºÇÑ´Ù.
+            TableColumn tableViewColumn1 = tableView1.getColumns().get(0);//ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
             tableViewColumn1.setCellValueFactory(new PropertyValueFactory("type"));
 
             TableColumn tableViewColumn2 = tableView1.getColumns().get(1);
@@ -54,16 +55,14 @@ public class Analysis {
                 score+=Integer.valueOf(tableDataArr[i].getAnalysis()) ;
             }
 
-            if (score>10){
-                txtResult.setText("ÁöÇ¥ ºĞ¼® °á°ú : ¸Å¼ö °­·Â ±Ç°í");
-            }else if (score>5){
-                txtResult.setText("ÁöÇ¥ ºĞ¼® °á°ú : ¸Å¼ö ±Ç°í");
+            if (score>=10){
+                txtResult.setText("ë§¤ìˆ˜ ê°•ë ¥ ê¶Œê³ ");
+            }else if (score>=7){
+                txtResult.setText("ë§¤ìˆ˜ ê¶Œê³ ");
+            }else if (score>=3){
+                txtResult.setText("í‰ì´í•œ ìƒí™©");
             }else if (score>0){
-                txtResult.setText("ÁöÇ¥ ºĞ¼® °á°ú : º¸Åë");
-            }else if (score>-5){
-                txtResult.setText("ÁöÇ¥ ºĞ¼® °á°ú : ¸Åµµ ±Ç°í");
-            }else{
-                txtResult.setText("ÁöÇ¥ ºĞ¼® °á°ú : ¸Åµµ °­·Â ±Ç°í");
+                txtResult.setText("ë§¤ë„ ê¶Œê³ ");
             }
 
 

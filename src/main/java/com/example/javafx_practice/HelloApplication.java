@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
         stage.setTitle("MAIN");
         stage.setScene(scene);
         stage.show();
-        Protocol.connect("localhost",8888);
+        Protocol.connect("localhost",10000);
 
 
     }
