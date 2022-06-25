@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.example.javafx_practice.item.WindowSize;
+import lombok.SneakyThrows;
+
 import java.io.IOException;
 import java.net.Socket;
 
@@ -26,6 +28,7 @@ public class AlertMain extends Application {
 
 
     static class AlertTask implements Runnable{
+
 
         @Override
         public void run() {

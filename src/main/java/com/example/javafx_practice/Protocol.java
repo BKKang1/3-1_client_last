@@ -12,17 +12,17 @@ import java.nio.ByteOrder;
 
 public class Protocol {
 
-    public static Socket conn;
+
     public static DataOutputStream dos;
     public static DataInputStream dis;
-
+    public static Socket conn;
     public static void connect(String ip, int port) {
         try {
             conn = new Socket(ip,port);
             dos = new DataOutputStream(conn.getOutputStream());
             dis = new DataInputStream(conn.getInputStream());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
 
         }
     }

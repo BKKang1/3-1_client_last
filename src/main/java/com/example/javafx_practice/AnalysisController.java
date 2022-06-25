@@ -23,23 +23,27 @@ import java.util.ResourceBundle;
 public class AnalysisController implements Initializable {
     public TextField txtResult;
     public Button btnReq;
-
+    public boolean first=true;
     @FXML
     private TableView<TableData> tableView1;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
+            first=true;
 
         //resTableData();
         Analysis.setAnalysis(txtResult,tableView1);
     }
     public void reqTableData(ActionEvent actionEvent) {
-        String title= StageStore.stage.getTitle();
-        String forex =title.substring(0,3);
-        Analysis.setForex(forex);
-        Analysis.reqTableData();
-        //send() forex;
+        if (first==true){
+            String title= StageStore.stage.getTitle();
+            String forex =title.substring(0,3);
+            Analysis.setForex(forex);
+            Analysis.reqTableData();
+            //send() forex;
+        }
+      first=false;
+        return ;
     }
 
 
@@ -73,13 +77,13 @@ public class AnalysisController implements Initializable {
             score+=Integer.valueOf(tableData[i].getAnalysis()) ;
         }
 
-        if (score>10){
+        if (score>=10){
             txtResult.setText("지표 분석 결과 : 매수 강력 권고");
-        }else if (score>5){
+        }else if (score>=8){
             txtResult.setText("지표 분석 결과 : 매수 권고");
-        }else if (score>0){
+        }else if (score>=6){
             txtResult.setText("지표 분석 결과 : 보통");
-        }else if (score>-5){
+        }else if (score>=4){
             txtResult.setText("지표 분석 결과 : 매도 권고");
         }else{
             txtResult.setText("지표 분석 결과 : 매도 강력 권고");

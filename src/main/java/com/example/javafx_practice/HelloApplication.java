@@ -13,13 +13,15 @@ import java.net.Socket;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        Protocol.connect("localhost",10000);
         StageStore.stage =stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),WindowSize.MAIN_X , WindowSize.MAIN_Y);
         stage.setTitle("MAIN");
         stage.setScene(scene);
         stage.show();
-        Protocol.connect("localhost",10000);
+
+
 
 
     }
